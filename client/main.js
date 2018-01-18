@@ -9,7 +9,7 @@ const appEl = document.getElementById('app')
 ReactDOM.render(<App history={history} />, appEl)
 
 if (module.hot) {
-  module.hot.accept('./lib/components/App.js', () => {
+  module.hot.accept('./lib/components/App.js ', () => {
     ReactDOM.unmountComponentAtNode(appEl)
     const NextApp = require('./lib/components/App.js').default
     ReactDOM.render(<NextApp history={history} />, appEl)
