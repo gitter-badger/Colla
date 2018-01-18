@@ -1,0 +1,42 @@
+from: fluidbyte/docker-node:latest
+services:
+  - mongodb:
+      from: mongo:latest
+      volumes:
+        - ${PWD}/data:/data/db
+expose:
+  - 9999:9999
+env:
+  - PORT=9999
+  - AUTH_PASSWORD_SALT=ZV2YWOXF3YC70VIEQPVH
+  - AUTH_JWT_SECRET=GFPNJJIFEDD2ECUGAD27
+  - AUTH_JWT_EXPIRES=86400000
+before: |
+  yarn config set cache-folder ./.yarn-cache
+  export MONGODB_CONN=mongodb://$MONGODB_PORT_27017_TCP_ADDR/test
+tasks:
+  env: env | sort
+  shell: /bin/bash
+  bundle: yarn run bundle
+  clean: |
+    rm -rf node_modules
+    rm -rf coverage
+    rm -rf data
+  clean:node_modules: rm -rf node_modules
+  clean:coverage: rm -rf coverage
+  clean:data: rm -rf data
+  install: yarn
+  upgrade: yarn upgrade-interactive
+  lint: yarn run lint
+  lint:server: yarn run lint:server
+  lint:client: yarn run lint:client
+  test: yarn run test
+  test:server: yarn run test:server
+  test:client: yarn run test:client
+  test:watch: yarn run test:watch
+  seed: node scripts/seed.js
+  start: |
+    export NODE_ENV=production
+    yarn run start
+  start:dev: yarn run dev
+

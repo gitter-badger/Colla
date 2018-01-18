@@ -1,0 +1,56 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 20px;
+}
+
+.componentBody {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+  .componentBody {
+    padding: 0 20px;
+  }
+}
+
+.Login {
+  width: 350px;
+  margin: 15% auto;
+}
+
+.AlertBox {
+  margin: 15px 0;
+}
+
+.Link {
+  cursor: pointer;
+}
+
+
+.DataTable-loading, .DataTable-no-data {
+  padding: 50px;
+  text-align: center;
+  color: #666;
+}
+
+.row {
+  padding: 10px 0;
+}
+
+/* fix weird navbar width issues */
+.container {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100% !important;
+}

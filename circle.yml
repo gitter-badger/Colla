@@ -1,0 +1,23 @@
+machine:
+  services:
+    - docker
+  node:
+    version: 6.0.0
+    
+general:
+  artifacts:
+    - coverage
+
+dependencies:
+  override:
+    - npm i devlab -g
+    - sudo rm -rf .yarn-cache/
+    - devlab install
+    
+test:
+  override:
+    - devlab test
+  post:
+    - sudo rm -rf .yarn-cache/
+    - npm i codecov -g
+    - codecov -f coverage/lcov.info
